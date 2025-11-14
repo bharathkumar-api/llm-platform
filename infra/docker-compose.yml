@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  llm-gateway:
+    build: ../llm-gateway
+    container_name: llm-gateway
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+
+  agent-service:
+    build: ../agent-service
+    container_name: agent-service
+    env_file:
+      - .env
+    environment:
+      LLM_GATEWAY_URL: ${LLM_GATEWAY_URL}
+    depends_on:
+      - llm-gateway
+    ports:
+      - "9100:9100"
