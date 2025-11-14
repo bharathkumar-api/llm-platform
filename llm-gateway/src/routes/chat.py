@@ -14,7 +14,7 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
     system_prompt: Optional[str] = None
-    provider: Optional[Literal["openai", "anthropic"]] = None
+    provider: Optional[Literal["groq"]] = None
 
 class ChatResponse(BaseModel):
     provider: str
